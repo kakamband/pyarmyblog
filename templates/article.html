@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{ post.title }}</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Python Army">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="{{ post.description }}">
+    <meta name="Keywords" content="{% for tag in tags %}{{ tag.tag }},{% endfor %}">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pyarmy">
+    <meta property="og:description" content="{{ post.description }}">
+    <meta property="og:title" content="{{ post.title }}">
+    <meta property="og.url" content="https://pyarmy.com/article/{{post.slug}}/">
+    <link rel="canonical" href="https://pyarmy.com/article/{{post.slug}}/">
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}" 
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/highlight/styles/monokai-sublime.css') }}">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173186043-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-173186043-1');
+    </script>
+
+
+    <!-- FontAwesome JS -->
+    <script defer src="{{ url_for('static', filename='js/fontawesome.min.js') }}"></script>
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/drip.css') }}">
+    <link id="theme-style" rel="stylesheet" href="{{ url_for('static', filename='css/theme-7.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
+
+
+</head>
+
+
+<body>
+
+    <button class="open-button" onclick="openForm()"><b>Want to Learn Python ?</b></button>
+    
+    <div class="chat-popup" id="myForm">
+        <div class="form-container">
+    
+            <label for="msg"><b>Learn Python </b></label>
+            <img src="{{ url_for('static', filename='images/cross.png') }}" onclick="closeForm()" alt="Close container">
+            <p>...with new Python Tips and Tricks <br>
+                in every couple of weeks <i class="fa fa-calendar" aria-hidden="true"></i></p>
+    
+            <hr>
+    
+            <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+    
+            <div id="mc_embed_signup">
+                <form
+                    action="https://pyarmy.us10.list-manage.com/subscribe/post?u=1ef350085567b79f2ffd1583a&amp;id=dcff376149"
+                    method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
+                    novalidate>
+                    <div id="mc_embed_signup_scroll">
+    
+                        <input style="padding: 19px 10px; margin-top: 2px;" type="email" value="" name="EMAIL" class="email"
+                            id="mce-EMAIL" placeholder="Enter Email" required>
+    
+                        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
+                                name="b_1ef350085567b79f2ffd1583a_dcff376149" tabindex="-1" value=""></div>
+                        <div class="clear"><input type="submit" value="Subscribe" name="subscribe"
+                                id="mc-embedded-subscribe" class="btn btn-primary"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('home') }}" style="font-family: 'Pacifico'; font-size: 30px;"><b>Python
+                    Army</b></a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar1">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar1">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('home') }}" style="font-size: 20px;">Blog</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('about') }}" style="font-size: 20px;">About</a>
+                    </li>
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('logout') }}" style="font-size: 20px;">Logout</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href='/edit/{{post.id}}' style="font-size: 20px;">Edit</a>
+                    </li>
+                    {% endif %}
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+<div class="main-wrapper">
+
+    <article class="blog-post px-3 py-5 p-md-5">
+        <div class="container">
+
+            <header class="blog-post-header">
+                <h2 class="title mb-2">{{ post.title }}</h2>
+                    <div class="meta mb-3">
+                        <span class="date" style="margin-right: 5px;"><i class="fas fa-calendar fa-fw mr-2"></i>Posted on {{ post.date_posted.strftime('%B %d, %Y') }}</span>
+                        <span class="time"><i class="fas fa-user fa-fw mr-2"></i>By {{ post.author }}</span>
+
+                        <ul class="list-group list-group-horizontal" style="margin-top: 3px; ">
+                            {% for tag in tags %}
+                            <a href="/tutorials/{{tag.tag}}" style="color: gray;">
+                            <li class="list-group-item" style="padding-bottom: 0px; padding-left: 0px; padding-top: 0px; margin-right: 5px; 
+                            background-color: rgb(247, 247, 247); border-radius: 3px; border-width: 0px;"><i class="fas fa-tag fa-fw mr-2"></i><b>{{tag.tag}}</b></li></a>
+                            {% endfor %}
+                        </ul>
+<!--
+                        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+                            data-text="Check out this #Python article: {{post.title}}: A Practical Guide by @thepyarmy" data-related="thepyarmy"
+                            data-show-count="false">Tweet</a>
+
+                            <div class="fb-share-button" data-href="https://pyarmy.com/post/{{ post.slug }}" data-layout="button"></div>
+-->
+                        </div>
+
+                <hr class="mb-4">
+            </header>
+
+            <div class="blog-post-body">
+                <figure class="blog-banner">
+                    <img class="img-fluid" src="/static/images/blog01/{{post.image}}" alt="{{post.description}}">
+                    <figcaption class="mt-2 text-center image-caption">{{post.subtitle}}</figcaption>
+                </figure>
+
+                {{ post.content|safe }}
+                
+            </div>
+        </div>
+    </article>
+
+</div>
+<!--//main-wrapper-->
+
+    <!-- Javascript -->
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script>
+
+    <!-- Javascript -->
+    <script src="{{ url_for('static', filename='plugins/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='plugins/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+
+
+    <!-- Page Specific JS -->
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script>
+    (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script src="{{ url_for('static', filename='plugins/highlight/highlight.min.js') }}"></script>
+
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/blog.js') }}"></script>
+
+    </body>
+
+</html>

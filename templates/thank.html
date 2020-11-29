@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Thanks, You're In</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Python Army">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}"
+
+    <!-- FontAwesome JS -->
+    <script defer src="{{ url_for('static', filename='js/fontawesome.min.js') }}"></script>
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="{{ url_for('static', filename='css/theme-7.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
+
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('home') }}" style="font-family: 'Pacifico'; font-size: 30px;"><b>Python
+                    Army</b></a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar1">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar1">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('home') }}" style="font-size: 20px;">Blog</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('about') }}" style="font-size: 20px;">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-wrapper">
+
+        <div class="page-wrap d-flex flex-row align-items-center" style="margin-top: 6%;">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-12 text-center">
+                        <span class="display-1 d-block"><b>Congrats 💥</b></span><br>
+                        <div class="mb-4 lead">You're in. Thank you for <u>subscribing</u>!</div>
+                        <img src="{{ url_for('static', filename='images/celeb.gif') }}" style="width: 100%; max-width:400px;"> <br><br>
+                        
+                        
+                        <a href="{{ url_for('home') }}" class="btn btn-link"><u>Back to Home</u></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--//main-wrapper-->
+
+
+    <!-- Javascript -->
+    <script src="{{ url_for('static', filename='plugins/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='plugins/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+
+</body>
+
+</html>

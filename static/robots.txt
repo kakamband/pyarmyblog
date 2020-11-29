@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /thanks
+Disallow: /admin/*
+Disallow: /edit/*
+Disallow: /search
+Disallow: /delete/*
+Disallow: /add
+
+Sitemap: https://pyarmy.com/sitemap.xml

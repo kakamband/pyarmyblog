@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Edit Post</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Python Army">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}" <!-- FontAwesome
+        JS -->
+    <script defer src="{{ url_for('static', filename='js/fontawesome.min.js') }}"></script>
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="{{ url_for('static', filename='css/theme-7.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
+
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('home') }}"
+                style="font-family: 'Pacifico'; font-size: 30px;"><b>Python
+                    Army</b></a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbar1">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar1">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('home') }}" style="font-size: 20px;">Blog</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('about') }}" style="font-size: 20px;">About</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('logout') }}" style="font-size: 20px;">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="margin-top: 5em !important;">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <form name="addForm" id="addForm" method="POST" action="/edit/{{post.id}}" novalidate>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Title</label>
+                            <input type="text" class="form-control" name="title" id="title" required
+                                data-validation-required-message="Please enter a title." value="{{ post.title }}">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Slug</label>
+                            <input type="text" class="form-control" name="slug" id="slug" required
+                                data-validation-required-message="Please enter a Slug" value="{{ post.slug }}">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Subtitle</label>
+                            <input type="text" class="form-control" name="subtitle" id="subtitle" required
+                                data-validation-required-message="Please enter a subtitle" value="{{ post.subtitle }}">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label>Author</label>
+                            <input type="text" class="form-control" name="author" id="author" required
+                                data-validation-required-message="Please enter your name." value="{{ post.author }}">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label>Description</label>
+                            <input type="text" class="form-control" name="description" id="description" required
+                                data-validation-required-message="Please enter description for home" value="{{ post.description }}">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label>Jus enter name of Image</label>
+                            <input type="text" class="form-control" name="image" id="image" required
+                                data-validation-required-message="Just enter name of featured image" value="{{ post.image }}">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Edit Content</label>
+                            <textarea rows="30" class="form-control" placeholder="Blog content" name="content" id="content" required
+                                data-validation-required-message="Please enter the content">{{ post.content }}</textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+
+                    <div id="success"></div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-secondary" id="sendMessageButton">Edit Done</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Javascript -->
+    {{ ckeditor.load() }}
+    {{ ckeditor.config() }}
+
+    <script src="{{ url_for('static', filename='plugins/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='plugins/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+
+</body>
+
+</html>

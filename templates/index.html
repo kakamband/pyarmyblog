@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Python Army - Organised Python Developers Force</title>
+
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="Keywords" content="Python,tutorials,programming,articles">
+	<meta name="author" content="Python Army">
+	<meta name="robots" content="index, follow">
+	<meta name="description"
+		content="Learn Python tips and tricks, Get Python articles, Python Latest news, Learn Python easily by reading Well organized and easy to understand Python Tutorials">
+	<meta property="og:locale" content="en_US">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="Python Articles – Pyarmy">
+	<meta property="og:description"
+		content="Learn Python tips and tricks, Get Python articles, Python Latest news, Learn Python easily by reading Well organized and easy to understand Python Tutorials">
+	<meta property="og:url" content="https://pyarmy.com/">
+	<meta property="og:site_name" content="Python Army">
+	<link rel="canonical" href="https://pyarmy.com/">
+
+	<link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+	<link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}"
+
+	<!-- FontAwesome JS -->
+	<script defer src="{{ url_for('static', filename='js/fontawesome.min.js') }}"></script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-173186043-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-173186043-1');
+	</script>
+
+
+	<!-- Theme CSS -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/drip.css') }}">
+	<link id="theme-style" rel="stylesheet" href="{{ url_for('static', filename='css/theme-7.css') }}">
+	<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
+
+
+</head>
+
+<body>
+
+	<button class="open-button" onclick="openForm()"><b>Want to Learn Python ?</b></button>
+
+	<div class="chat-popup" id="myForm">
+		<div class="form-container">
+
+			<label for="msg"><b>Learn Python </b></label>
+			<img src="{{ url_for('static', filename='images/cross.png') }}" onclick="closeForm()" alt="Close container">
+			<p>...with new Python Tips and Tricks <br>
+				in every couple of weeks <i class="fa fa-calendar" aria-hidden="true"></i></p>
+
+			<hr>
+
+			<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+
+			<div id="mc_embed_signup">
+				<form
+					action="https://pyarmy.us10.list-manage.com/subscribe/post?u=1ef350085567b79f2ffd1583a&amp;id=dcff376149"
+					method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
+					novalidate>
+					<div id="mc_embed_signup_scroll">
+
+						<input style="padding: 19px 10px; margin-top: 2px;" type="email" value="" name="EMAIL"
+							class="email" id="mce-EMAIL" placeholder="Enter Email" required>
+
+						<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+						<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
+								name="b_1ef350085567b79f2ffd1583a_dcff376149" tabindex="-1" value=""></div>
+						<div class="clear"><input type="submit" value="Subscribe" name="subscribe"
+								id="mc-embedded-subscribe" class="btn btn-primary"></div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<nav class="navbar navbar-expand-sm fixed-top navbar-light bg-white">
+		<div class="container">
+			<a class="navbar-brand" href="{{ url_for('home') }}"
+				style="font-family: 'Pacifico'; font-size: 30px;"><b>Python Army</b></a>
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+				data-target="#navbar1">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbar1">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="{{ url_for('home') }}" style="font-size: 20px;">Blog</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="{{ url_for('about') }}" style="font-size: 20px;">About</a>
+					</li>
+					{% if current_user.is_authenticated %}
+					<li class="nav-item active">
+						<a class="nav-link" href="{{ url_for('logout') }}" style="font-size: 20px;">Logout</a>
+					</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+
+	<div class="main-wrapper">
+
+		<section class="blog-list px-3 py-5 p-md-5">
+			
+			<div class="container">
+				<h1 style="text-align: center;">Python Articles</h1><br>
+				<div class="row">
+					
+					{% for post in posts %}
+					<div class="col-md-4 mb-3">
+						<div class="card blog-post-card">
+							<img class="card-img-top" src="/static/images/blog01/{{ post.image }}" alt="{{post.subtitle}}">
+							<div class="card-body">
+								<h2 class="card-title"><a class="theme-link" href="{{ url_for('post', slug=post.slug) }}">{{ post.title }}</a></h2>
+								<p class="card-text">{{ post.description }}</p>
+								<p class="mb-0"><a class="more-link" href="{{ url_for('post', slug=post.slug) }}">Read more &rarr;</a></p>
+								<small class="text-muted">Published on {{ post.date_posted.strftime('%B %d, %Y') }}</small>									
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+
+					<div class="col-md-4 mb-3">
+						<div class="card blog-post-card">
+							<img class="card-img-top"
+								src="{{ url_for('static', filename='images/blog01/cover13.jpeg') }}" alt="Python allows variable exchange">
+							<div class="card-body">
+								<h2 class="card-title"><a class="theme-link"
+										href="https://towardsdatascience.com/why-does-python-allow-the-exchange-of-two-variables-directly-fbb81856799e">Why
+										Python allows the Exchange of Variables Directly?</a></h2>
+								<p class="card-text">If you want to exchange the water in the two cups, you will
+									naturally need a third container as a relay, then how Python allows a, b = b, a </p>
+								<p class="mb-0"><a class="more-link"
+										href="https://towardsdatascience.com/why-does-python-allow-the-exchange-of-two-variables-directly-fbb81856799e">Read
+										more &rarr;</a></p>
+								<small class="text-muted">Published on Jul 25</small>
+
+
+							</div>
+						</div>
+						<!--//card-->
+					</div>
+
+					<div class="col-md-4 mb-3">
+						<div class="card blog-post-card">
+							<img class="card-img-top"
+								src="{{ url_for('static', filename='images/blog01/cover10.png') }}" alt="NLP libraries">
+							<div class="card-body">
+								<h2 class="card-title"><a class="theme-link"
+										href="https://towardsdatascience.com/5-nlp-libraries-everyone-should-know-4f13f5263908">5
+										NLP Libraries Everyone Should Know</a></h2>
+								<p class="card-text">Brief Overview Article Of Popular Libraries for Natural Language Processing
+									Tasks
+									that everyone should know. It features spaCy, NLTK, Transformers, Genism, Stanza.
+								</p>
+								<p class="mb-0"><a class="more-link"
+										href="https://towardsdatascience.com/5-nlp-libraries-everyone-should-know-4f13f5263908">Read
+										more &rarr;</a></p>
+								<small class="text-muted">Published on Jul 20</small>
+
+
+							</div>
+						</div>
+						<!--//card-->
+					</div>
+					<!--//col-->
+					<div class="col-md-4 mb-3">
+						<div class="card blog-post-card">
+							<img class="card-img-top"
+								src="{{ url_for('static', filename='images/blog01/cover02.jpg') }}" alt="Python Main function">
+							<div class="card-body">
+								<h2 class="card-title"><a class="theme-link"
+										href="https://towardsdatascience.com/why-doesnt-python-have-a-main-function-3afe6a8d093">Why
+										doesn’t Python have a main function?</a></h2>
+								<p class="card-text">if __name__ == '__main__' is not function. And the author doesn't
+									recommend
+									it to write this either. Want to know the
+									reasons? but how to write it instead?</p>
+								<p class="mb-0"><a class="more-link"
+										href="https://towardsdatascience.com/why-doesnt-python-have-a-main-function-3afe6a8d093">Read
+										more &rarr;</a></p>
+								<small class="text-muted">Published on Jul 18</small>
+							</div>
+						</div>
+						<!--//card-->
+					</div>
+					<!--//col-->
+					<div class="col-md-4 mb-3">
+						<div class="card blog-post-card">
+							<img class="card-img-top"
+								src="{{ url_for('static', filename='images/blog01/cover01.jpg') }}" alt="Python Snake case">
+							<div class="card-body">
+								<h2 class="card-title"><a class="theme-link"
+										href="https://towardsdatascience.com/why-does-python-recommend-the-snake-case-nomenclature-bf908777c2dc">Why
+										Does Python Recommend the Snake-Case Nomenclature?</a></h2>
+								<p class="card-text">In this story of “Why Python” series, we will focus on the
+									connection
+									method in variable namings:
+									The question we want to answer is- why does Python recommend the snake-like
+									nomenclature?
+								</p>
+								<p class="mb-0"><a class="more-link"
+										href="https://towardsdatascience.com/why-does-python-recommend-the-snake-case-nomenclature-bf908777c2dc">Read
+										more &rarr;</a></p>
+								<small class="text-muted">Published on July 13</small>
+							</div>
+
+						</div>
+						<!--//card-->
+					</div>
+					<!--//col-->
+					<div class="col-md-4 mb-3">
+						<div class="card blog-post-card">
+							<img class="card-img-top"
+								src="{{ url_for('static', filename='images/blog01/cover03.jpeg') }}" alt="Optimize Sql Queries">
+							<div class="card-body">
+								<h2 class="card-title"><a class="theme-link"
+										href="https://towardsdatascience.com/how-to-optimize-sql-queries-part-ii-407311784112">How
+										to Optimize SQL Queries Part II</a></h2>
+								<p class="card-text">This article sorts out some 12 techniques for optimizing
+									SQL Queries.
+									Several suggestions most of which are summarized
+									in the actual development</p>
+								<p class="mb-0"><a class="more-link"
+										href="https://towardsdatascience.com/how-to-optimize-sql-queries-part-ii-407311784112">Read
+										more &rarr;</a></p>
+								<small class="text-muted">Published on Jun 10</small>
+							</div>
+
+						</div>
+						<!--//card-->
+					</div>
+					<!--//col-->
+					<div class="col-md-4 mb-3">
+						<div class="card blog-post-card">
+							<img class="card-img-top"
+								src="{{ url_for('static', filename='images/blog01/cover04.jpeg') }}" alt="Python Development skills">
+							<div class="card-body">
+								<h2 class="card-title"><a class="theme-link"
+										href="https://towardsdatascience.com/ten-python-development-skills-998a52f8f7c0">Ten
+										Python development skills</a></h2>
+								<p class="card-text">Here are ten neat Python development tricks some I’m sure you
+									haven’t seen
+									before. And a quick look at a few of these
+									features, and a rundown of each.</p>
+								<p class="mb-0"><a class="more-link"
+										href="https://towardsdatascience.com/ten-python-development-skills-998a52f8f7c0">Read
+										more &rarr;</a></p>
+								<small class="text-muted">Published on Jun 6</small>
+							</div>
+
+						</div>
+						<!--//card-->
+					</div>
+					<!--//col-->
+					<div class="col-md-4 mb-3">
+						<div class="card blog-post-card">
+							<img class="card-img-top"
+								src="{{ url_for('static', filename='images/blog01/cover07.jpeg') }}" alt="Python Floats">
+							<div class="card-body">
+								<h2 class="card-title"><a class="theme-link"
+										href="https://towardsdatascience.com/dark-secrets-of-python-floats-dbe2d1b8a85c">Dark
+										Secrets of Python Floats</a></h2>
+								<p class="card-text">Mysterious guide of Floating Points in Python with Cold knowledge
+									of 'inf'
+									and 'nan'. You will get knowledge of hash()
+									and it's abnormal behavior too</p>
+								<p class="mb-0"><a class="more-link"
+										href="https://towardsdatascience.com/dark-secrets-of-python-floats-dbe2d1b8a85c">Read
+										more &rarr;</a></p>
+								<small class="text-muted">Published on Jun 2</small>
+							</div>
+						</div>
+						<!--//card-->
+					</div>
+					<!--//col-->
+
+					<div class="col-md-4 mb-3">
+						<div class="card blog-post-card">
+							<img class="card-img-top"
+								src="{{ url_for('static', filename='images/blog01/cover05.jpeg') }}" alt="Python increment Function">
+							<div class="card-body">
+								<h2 class="card-title"><a class="theme-link"
+										href="https://towardsdatascience.com/why-doesnt-python-support-i-increment-syntax-ca7f04a2beb">Why
+										doesn’t Python support i++ increment</a></h2>
+								<p class="card-text">An article about the possible reasons behind the question why doesn't
+									Python
+									support i++ increment syntax and doesn't provide
+									++ as an operator</p>
+								<p class="mb-0"><a class="more-link"
+										href="https://towardsdatascience.com/why-doesnt-python-support-i-increment-syntax-ca7f04a2beb">Read
+										more
+										&rarr;</a></p>
+								<small class="text-muted">Published on Jun 29</small>
+							</div>
+						</div>
+						<!--//card-->
+					</div>
+					<!--//col-->
+
+					<div class="col-md-4 mb-3">
+						<div class="card blog-post-card">
+							<img class="card-img-top"
+								src="{{ url_for('static', filename='images/blog01/cover12.jpg') }}" alt="Python Builtins">
+							<div class="card-body">
+								<h2 class="card-title"><a class="theme-link"
+										href="https://towardsdatascience.com/8-super-easy-to-use-python-built-in-functions-fa873e66085">8
+										super easy-to-use Python built-in functions</a></h2>
+								<p class="card-text">This article sorts out some special techniques for using built-in
+									functions
+									in python. They will help us to improve the
+									efficiency of our Python code</p>
+								<p class="mb-0"><a class="more-link"
+										href="https://towardsdatascience.com/8-super-easy-to-use-python-built-in-functions-fa873e66085">Read
+										more
+										&rarr;</a></p>
+								<small class="text-muted">Published on Jun 20</small>
+							</div>
+						</div>
+						<!--//card-->
+					</div>
+					<!--//col-->
+
+					<div class="col-md-4 mb-3">
+						<div class="card blog-post-card">
+							<img class="card-img-top"
+								src="{{ url_for('static', filename='images/blog01/cover09.jpg') }}" alt="Sql Queries Optimization">
+							<div class="card-body">
+								<h2 class="card-title"><a class="theme-link"
+										href="https://towardsdatascience.com/how-to-optimize-sql-queries-742177cd5cc6">How
+										to
+										Optimize SQL Queries</a></h2>
+								<p class="card-text">This article sorts out 16 different techniques for optimizing
+									SQL Queries. That are helpful for everyone</p>
+								<p class="mb-0"><a class="more-link"
+										href="https://towardsdatascience.com/how-to-optimize-sql-queries-742177cd5cc6">Read
+										more
+										&rarr;</a></p>
+								<small class="text-muted">Published on Jun 13</small>
+							</div>
+						</div>
+						<!--//card-->
+					</div>
+
+					<div class="col-md-4 mb-3">
+						<div class="card blog-post-card">
+							<img class="card-img-top"
+								src="{{ url_for('static', filename='images/blog01/cover11.jpeg') }}" alt="Python speedup Skills">
+							<div class="card-body">
+								<h2 class="card-title"><a class="theme-link"
+										href="https://towardsdatascience.com/do-you-have-these-python-speedup-skills-3fd9e7758765">Do
+										You have these Python Speedup Skills?</a></h2>
+								<p class="card-text">This article sorts out some special techniques for speeding up
+									Python code.
+									Sharing some powerful and time-saving tricks
+									to boost your skills</p>
+								<p class="mb-0"><a class="more-link"
+										href="https://towardsdatascience.com/do-you-have-these-python-speedup-skills-3fd9e7758765">Read
+										more
+										&rarr;</a></p>
+								<small class="text-muted">Published on Jun 13</small>
+							</div>
+						</div>
+						<!--//card-->
+					</div>
+					<!--//col-->
+				</div>
+				<!--//row-->
+
+			</div>
+		</section>
+
+	</div>
+	<!--//main-wrapper-->
+
+	<!-- Javascript -->
+	<script>
+		function openForm() {
+			document.getElementById("myForm").style.display = "block";
+		}
+
+		function closeForm() {
+			document.getElementById("myForm").style.display = "none";
+		}
+	</script>
+
+
+	<!-- Javascript -->
+	<script src="{{ url_for('static', filename='plugins/jquery-3.4.1.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='plugins/popper.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+
+</body>
+
+</html>

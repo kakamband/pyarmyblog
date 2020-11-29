@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{tag}} Tutorials</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Python Army">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="Keywords" content="{{ tag }}">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Pyarmy">
+    <meta property="og:title" content="{{ tag }} Tutorials">
+    <meta property="og.url" content="https://pyarmy.com/tutorials/{{tag}}/">
+    <link rel="canonical" href="https://pyarmy.com/tutorials/{{tag}}/">
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}" 
+    
+    <!-- FontAwesome JS -->
+    <script defer src="{{ url_for('static', filename='js/fontawesome.min.js') }}"></script>
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="{{ url_for('static', filename='css/theme-7.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('home') }}"
+                style="font-family: 'Pacifico'; font-size: 30px;"><b>Python
+                    Army</b></a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbar1">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar1">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('home') }}" style="font-size: 20px;">Blog</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('about') }}" style="font-size: 20px;">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Thanks, You're In</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Python Army">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}"
+
+    <!-- FontAwesome JS -->
+    <script defer src="{{ url_for('static', filename='js/fontawesome.min.js') }}"></script>
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="{{ url_for('static', filename='css/theme-7.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
+
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('home') }}" style="font-family: 'Pacifico'; font-size: 30px;"><b>Python
+                    Army</b></a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar1">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar1">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('home') }}" style="font-size: 20px;">Blog</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('about') }}" style="font-size: 20px;">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-wrapper">
+    
+        <section class="blog-list px-3 py-5 p-md-5">
+            <div class="container">
+
+                {% for post in posts %}
+                <div class="item mb-5">
+
+                    <div class="media">
+                        <img class="mr-3 img-fluid post-thumb d-none d-md-flex"
+                            src="/static/images/blog01/{{post.image}}" alt="{{post.subtitle}}">
+                        <div class="media-body">
+                            <h3 class="title mb-1"><a href="blog-post.html">{{ post.title }}</a></h3>
+
+                            <div class="meta mb-1">
+                                <span class="date">Published on {{ post.date_posted.strftime('%B %d, %Y') }}</span>
+                                <span class="time">By {{ post.author }}</span>
+                            </div>
+
+                            <div class="intro">
+                                {{ post.description }}
+                            </div>
+                            <a class="more-link" href="/article/{{post.slog}}/">Read more &rarr;</a>
+                        </div>
+                        <!--//media-body-->
+                    </div>
+                    <!--//media-->
+                </div>
+                {% endfor %}
+                <!--//item-->
+    
+            </div>
+        </section>
+
+    </div>
+    <!--//main-wrapper-->
+
+    <!-- Javascript -->
+    <script src="{{ url_for('static', filename='plugins/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='plugins/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+    
+    </body>
+    
+</html>
