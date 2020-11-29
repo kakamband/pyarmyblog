@@ -22,3 +22,8 @@ Project developed during Who Wants To Be A Hackionaire Hackathon
 * db.session.add(pj)
 * db.session.commit()
 ```
+
+### Video 
+**CLICK ON IMAGE TO PLAY VIDEO**
+
+[![Project Screen](https://img.youtube.com/vi/G3v-P9-mx5Q/0.jpg)](https://www.youtube.com/watch?v=G3v-P9-mx5Q)
